@@ -6,10 +6,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping({"/auth"})
-public class AuthController {
-    @GetMapping("/login")
-    public ModelAndView login() {
-        return new ModelAndView("login");
+@RequestMapping("/contact")
+public class ContactController {
+    @GetMapping("contact-us")
+    public ModelAndView home(){
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("contact-us");
+        return mv;
     }
 }

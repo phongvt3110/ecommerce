@@ -6,26 +6,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/")
-public class HomeController {
-    @GetMapping("")
-    public ModelAndView home(){
+@RequestMapping("/blog")
+public class BlogController {
+    @GetMapping("blog-list")
+    public ModelAndView blog(){
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("index");
+        mv.setViewName("blog");
         return mv;
     }
 
-    @GetMapping("/payment")
-    public ModelAndView payment(){
+    @GetMapping("blog-single")
+    public ModelAndView blogSingle(){
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("payment");
-        return mv;
-    }
-
-    @GetMapping("not-found")
-    public ModelAndView notFound(){
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("404");
+        mv.setViewName("blog-single");
         return mv;
     }
 }
