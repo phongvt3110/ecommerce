@@ -1,25 +1,25 @@
-package com.org.shopping.controllers;
+package com.org.shopping.controllers.errorhandler;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class CustomErrorController implements ErrorController {
     @RequestMapping("/error")
-    public ResponseEntity<String> handleError(HttpServletRequest request) {
-        Object status = request.getAttribute("javax.servlet.error.status_code");
+    public ModelAndView handleError(HttpServletRequest request) {
+        ModelAndView mv = new ModelAndView();
+        Object status = request.getAttribute("jakarta.servlet.error.status_code");
         if (status != null) {
             int statusCode = Integer.parseInt(status.toString());
             if(statusCode == HttpStatus.NOT_FOUND.value()) {
-                return ResponseEntity
-                        .status(HttpStatus.NOT_FOUND)
-                        .body("404 - Not Found");
+                mv.setViewName("errors/404");
             }
         }
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("500 - Internal Server Error");
+        mv.setViewName("errors/500");
+        return mv;
     }
 }

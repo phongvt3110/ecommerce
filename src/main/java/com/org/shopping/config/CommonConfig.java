@@ -16,8 +16,11 @@ public class CommonConfig {
         templateResolver.setTemplateMode(TemplateMode.HTML);
         templateResolver.setCharacterEncoding("UTF-8");
         templateResolver.setCacheable(false);
+        templateResolver.setOrder(1);
+        templateResolver.setCheckExistence(true);
         return templateResolver;
     }
+
 
     @Bean
     public SpringTemplateEngine templateEngine(){
